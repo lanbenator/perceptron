@@ -9,16 +9,21 @@
 
 class Perceptron {
     int size;
-    double b;
     double *w;
+    float learningRate;
+
+    short activation(double res);
+    void delta(double *w_, double w, double *x);
 
 public:
-    Perceptron(int size);
+    Perceptron(int size, float learningRate);
     ~Perceptron();
 
-    double eval(double *x);
+    short eval(double *x);
 
-    void learn(double *x);
+    void train(double **x, short *y, int trainingDataSize, int iterationCount);
 
-    double mse(double **x, double *y, int size);
+    double mse(double **x, short *y, int size);
+
+    void print();
 };
